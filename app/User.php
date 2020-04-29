@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Models\Tweet;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -16,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'username', 'avatar', 'wall-papper'
     ];
 
     /**
@@ -36,4 +38,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class);
+    }
+
+    public function getAvatarAttribute($value)
+    {
+        return $value ? Storage::url($this->avatar) : asset('img/default-avatar.jpeg');
+    }
+
+    public function timeline()
+    {
+        return $this->tweets();
+    }
 }
