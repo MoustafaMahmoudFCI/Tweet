@@ -8,7 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="{{ asset('plugin/fontawesome-free/css/all.min.css') }}">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -26,10 +27,8 @@
             <img src="{{ asset('img/logo.svg') }}" width="" alt="">
        </nav>
 
-        <main class="py-4 px-8">
-            <div class="container">
-                {{ $slot }}
-            </div>
+        <main class="py-2">
+            {{ $slot }}
         </main>
     </div>
 </body>

@@ -13,7 +13,7 @@
                 </div>
 
                 <!-- Right side-->
-                <div class="lg:w-1/6">
+                <div class="lg:w-1/5">
                     @include('inc._friends-list')
                 </div>
             </div>
