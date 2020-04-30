@@ -1,4 +1,4 @@
-<ul>
+<ul class="p-4 bg-gray-100 rounded-xl">
     <li>
         <a href="" class="font-bold mb-4 text-lg block">
             Home

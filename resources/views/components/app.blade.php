@@ -3,7 +3,7 @@
         <main class="container mx-auto">
             <div class="lg:flex lg:justify-between">
                 {{-- left side --}}
-                <div class="lg:w-32">
+                <div class="lg:w-1/6">
                     @include('inc._sidebar-links')
                 </div>
 
@@ -13,7 +13,7 @@
                 </div>
 
                 <!-- Right side-->
-                <div class="lg:w-1/5">
+                <div class="lg:w-1/6">
                     @include('inc._friends-list')
                 </div>
             </div>

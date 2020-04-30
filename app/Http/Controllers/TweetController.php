@@ -10,7 +10,7 @@ class TweetController extends Controller
     public function index()
     {
         return view('tweets.index', [
-            'tweets' => Tweet::paginate(50)
+            'tweets' => current_user()->timeline()
         ]);
     }
 }

@@ -44,6 +44,16 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class);
     }
 
+    public function follow(User $user)
+    {
+        $this->follows()->save($user);
+    }
+
+    public function follows()
+    {
+        return $this->belongsToMany('App\User', 'follows', 'user_id', 'following_user_id');
+    }
+
     public function getAvatarAttribute($value)
     {
         return $value ? Storage::url($this->avatar) : asset('img/default-avatar.jpeg');
@@ -51,6 +61,8 @@ class User extends Authenticatable
 
     public function timeline()
     {
-        return $this->tweets();
+        $friends = $this->follows()->where('user_id', $this->id)->pluck('id');
+        return Tweet::whereIn('user_id', $friends)
+            ->orWhere('user_id', $this->id)->paginate(20);
     }
 }
