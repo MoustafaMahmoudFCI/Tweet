@@ -10,6 +10,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- fontawesome -->
     <link rel="stylesheet" href="{{ asset('plugin/fontawesome-free/css/all.min.css') }}">
+
+    <!-- toastr -->
+    <link rel="stylesheet" href="{{ asset('plugin/toastr/toastr.min.css') }}">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -31,5 +34,38 @@
             {{ $slot }}
         </main>
     </div>
+    <script src="{{ asset('plugin/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/turbolinks.js') }}"></script>
+    <!-- toastr -->
+   <script src="{{ asset('plugin/toastr/toastr.min.js') }}"></script>
+
+        @if (Session::has('success'))
+            <script>
+                toastr.success("{{ Session::get('success') }}");
+            </script>
+        @endif
+
+        @if (Session::has('info'))
+            <script>
+                toastr.info("{{ Session::get('info') }}");
+            </script>
+        @endif
+
+        <script>
+            $(document).on('keyup','#tweet',function(){
+                var rem = 255 - $(this).val().length;
+                $('.count').text(rem);
+                $('.count').removeClass('text-red-500');
+                if(rem < 10){
+                    $('.count').addClass('text-red-500');
+                }
+            });
+            toastr.options = {
+                "positionClass": "toast-bottom-right",
+                "showDuration": "300",
+                "hideDuration": "1000",
+                }
+        </script>
+    <script src="{{ asset('js/style.js') }}"></script>
 </body>
 </html>

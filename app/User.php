@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'avatar', 'wall-papper'
+        'name', 'email', 'password', 'username', 'avatar', 'profile_img', 'biography'
     ];
 
     /**
@@ -53,12 +53,22 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        return $value ? Storage::url($this->avatar) : asset('img/default-avatar.jpeg');
+        return $value ? Storage::url($value) : asset('img/default-avatar.jpeg');
     }
 
-    public function getProfileImageAttribute($value)
+    public function getProfileImgAttribute($value)
     {
-        return $value ? Storage::url($this->profile_img) : asset('img/default-profile-img.jpg');
+        return $value ? Storage::url($value) : asset('img/default-profile-img.jpg');
+    }
+
+
+    public function getAvatar()
+    {
+        return $this->getAttributes()['avatar'];
+    }
+    public function getProfileImg()
+    {
+        return $this->getAttributes()['profile_img'];
     }
 
     public function timeline()

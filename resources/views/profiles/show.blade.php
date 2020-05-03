@@ -2,7 +2,7 @@
     <header class="mb-4 ">
         <div class="relative">
             <img class="rounded-xl"
-                src="{{ $user->profileImage }}"
+                src="{{ $user->profile_img }}"
                 alt="profile picture">
             <img src="{{ $user->avatar }}"
             class="rounded-full absolute bottom-0 transform -translate-x-1/2 translate-y-1/2"
